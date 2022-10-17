@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="../css/memory.css">
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <h2>memory</h2>
+        </div>
+        <div class="message">
+            <div class="close">
+                <span id="close">close</span>
+            </div>
+            <div class="message-text">
+                <h2>Please Select User</h2>
+            </div>
+        </div>
+        <div class="startgame">
+            <div class="start-game-container">
+                <div class="theme sgall">
+                    <h4>Select Theme</h4>
+                    <div>
+                        <h3  id="themeh31"><span>Numbers</span></h3>
+                        <h3  id="themeh32"><span>Icons</span></h3>
+                        
+                    </div>
+                </div>
+                <div class="number sgall">
+                    <h4>Number of Players</h4>
+                    <div>
+                        <h3 id="player1"><span>1</span></h3>
+                        <h3 id="player2"><span>2</span></h3>
+                        <h3 id="player3"><span>3</span></h3>
+                        <h3 id="player4"><span>4</span></h3>
+                       
+                    </div>
+                </div>
+                <div class="grid sgall">
+                    <h4>Grid Size</h4>
+                    <div>
+                        <h3 id="grid4"><span>4*4</span></h3>
+                        <h3 id="grid6"><span>6*6</span></h3>
+                        
+                    </div>
+                </div>
+                <div class="btn-start" id="btn-start">
+                    <button><h3>Start Game</h3></button>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <h5 id="reset"><span>Restart</span></h5>
+            <h5 class="newgame" id="newgame"><span>New Game</span></h5>
+            
+        </div>
+    </header>
+    <main>
+        <section id="grid-container">
+
+        </section>
+    </main>
+    <footer id="footer">
+        
+    </footer>
+    <script src="../js/memory.js"></script>
+</body>
+</html>
