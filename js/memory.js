@@ -19,11 +19,14 @@ const footerdiv2=document.getElementById('footerdiv2')
 const footerdiv3=document.getElementById('footerdiv3')
 const footerdiv4=document.getElementById('footerdiv4')
 const footer_div=document.getElementsByClassName('footer-div')
-const message=document.querySelector('.message')
+const total=document.querySelector('.total-rate')
 const winclose=document.getElementById('close')
 const main=document.querySelector('main')
 const header=document.querySelector('header')
 const reset=document.getElementById('reset')
+const fazitplayer=document.getElementById('total-text')
+const total_reset=document.querySelector('.total-reset')
+const total_new=document.querySelector('.total-new')
 // menu setting
 
 let theme={
@@ -43,6 +46,7 @@ const listwin=[]
 const x=[]
 const y=[]
 const ItemsData=[];
+let totaltrue=0;
 const number=[
     {
         id:0,
@@ -257,7 +261,23 @@ startgame.classList.add('startgamechange')
 FooterClear()
 })
 
-reset.addEventListener('click', async function() {
+total_new.addEventListener('click', function() {
+    total.classList.remove('totalchange')
+    startgame.classList.add('startgamechange')
+    FooterClear()
+
+
+})
+total_reset.addEventListener('click', function() {
+Reset()
+total.classList.remove('totalchange')
+
+})
+reset.addEventListener('click',  function() {
+   Reset()
+
+})
+async function Reset(){
     listwin.length=0;
     await ProductItems(grid.item);
     await GridShow()
@@ -267,8 +287,8 @@ reset.addEventListener('click', async function() {
     await ClickSpan()
     await ClickFooter()
     await SelectUser()
-    console.log('reset')
-})
+    await AddPlayerActive('footerdiv1')
+}
 //spielart select theme
 if(theme.item == 'number'){
     theme_h31.style.backgroundColor='#192a56'
@@ -387,8 +407,11 @@ btn_start.addEventListener('click', async function(){
     await ClickFooter()
     await SelectUser()
     await ResetPlayerRate()
+    await AddPlayerActive('footerdiv1')
+    
 
 })
+
 
 // main in body
 
@@ -497,7 +520,9 @@ function ClickSpan(){
                 //    y1.style.filter='brightness(100%)';
                 //    y2.style.filter='brightness(100%)';
                     AddRatet()
-                
+                    addtotaltrue()
+                    checktotaltrue()
+
                 }else{
                     checkClick=0
                     x.length=0
@@ -567,7 +592,7 @@ const FooterColorClear= () => {
 
 const AddPlayerActive = (k) => {
     const z=k.split('')
-    console.log(z[9])
+    console.log('k=',k)
     activeplayer.player=z[9]
 }
 // default select user 1
@@ -581,12 +606,14 @@ function AddRatef(){
     u[0].falsh=u[0].falsh+1
     const sf=document.getElementById(`falsh${activeplayer.player}`)
     sf.innerText=u[0].falsh
+    sf.style.color='red'
 }
 function AddRatet(){
     const u=PlayersRate.filter((x)=> x.id == activeplayer.player)
     u[0].true=u[0].true+1
     const st=document.getElementById(`true${activeplayer.player}`)
     st.innerText=u[0].true
+    st.style.color='green'
 }
 
 const ResetPlayerRate = () => {
@@ -595,3 +622,38 @@ const ResetPlayerRate = () => {
         item.true=0
     })
 }
+const checktotaltrue = () => {
+if(grid.item == 4 && totaltrue == 8){
+    total.classList.add('totalchange')
+    showTotalPlayer()    
+}
+if(grid.item == 6 && totaltrue == 18){
+    total.classList.add('totalchange')
+    showTotalPlayer()    
+}
+}
+
+const addtotaltrue = () => {
+    totaltrue=totaltrue+1
+}
+
+const totaltruereset = () =>{
+    totaltrue=0
+}
+const showTotalPlayer = () => {
+    const sortplayer=[...PlayersRate].sort((a,b)=> (b.true - a.true || a.falsh - b.falsh))
+     fazitplayer.innerHTML=sortplayer.map((item) => {
+        return(
+            `<div class='player-show'> 
+                <span>Player${item.id} </span>
+                <span>${item.true} </span>
+                <span>${item.falsh} </span>
+            </div>
+            `
+        )
+     }).join('')
+     console.log(sortplayer)
+}
+winclose.addEventListener('click', function(){
+    total.classList.remove('totalchange')
+})
