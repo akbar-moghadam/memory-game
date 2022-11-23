@@ -310,11 +310,12 @@ footer{
     /* height: 5rem; */
     width: 80%;
     display: grid;
-    grid-template-columns: repeat(4,20%);
+    grid-template-columns: repeat(auto-fit,minmax(180px,200px));
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     place-items: center;
     margin-top: 3rem;
+    gap: 2rem;
 }
 .footer-div{
     padding: 5px;

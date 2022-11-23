@@ -629,7 +629,9 @@ if(grid.item == 4 && totaltrue == 8){
 }
 if(grid.item == 6 && totaltrue == 18){
     total.classList.add('totalchange')
-    showTotalPlayer()    
+    showTotalPlayer() 
+    
+
 }
 }
 
